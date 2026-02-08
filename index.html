@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쿠팡! | 로켓배송</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <!-- 상단 헤더 -->
     <header>
@@ -23,7 +26,8 @@
         <div class="header-main">
             <div class="container main-flex">
                 <div class="logo">
-                    <img src="https://image7.coupangcdn.com/image/coupang/common/logo_coupang_w350.png" alt="쿠팡 로고" id="main-logo">
+                    <img src="https://image7.coupangcdn.com/image/coupang/common/logo_coupang_w350.png" alt="쿠팡 로고"
+                        id="main-logo">
                 </div>
                 <div class="category-btn">
                     <i class="fa-solid fa-bars"></i>
@@ -41,7 +45,7 @@
                         <i class="fa-regular fa-user"></i>
                         <span>마이쿠팡</span>
                     </div>
-                    <div class="menu-item cart">
+                    <div class="menu-item cart" id="cart-icon">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span>장바구니</span>
                         <span class="cart-count">0</span>
@@ -51,9 +55,10 @@
         </div>
         <nav class="header-nav">
             <div class="container">
-                <ul class="nav-list">
-                    <li><a href="#" class="active">로켓배송</a></li>
-                    <li><a href="#">로켓프레시</a></li>
+                <ul class="nav-list" id="category-list">
+                    <li><a href="#" class="active" data-category="all">전체보기</a></li>
+                    <li><a href="#" data-category="rocket">로켓배송</a></li>
+                    <li><a href="#" data-category="fresh">로켓프레시</a></li>
                     <li><a href="#">쿠팡비즈</a></li>
                     <li><a href="#">골드박스</a></li>
                     <li><a href="#">와우회원전용</a></li>
@@ -67,7 +72,18 @@
         <!-- 메인 배너 슬라이더 -->
         <section class="hero-banner">
             <div class="banner-container">
-                <img src="https://raw.githubusercontent.com/wonseokjung/solopreneur-ai-agents/main/agents/kodari/assets/sample_banner.jpg" alt="메인 배너" onerror="this.src='https://via.placeholder.com/1200x450?text=Coupang+Rocket+Event'">
+                <img src="https://raw.githubusercontent.com/wonseokjung/solopreneur-ai-agents/main/agents/kodari/assets/sample_banner.jpg"
+                    alt="메인 배너" onerror="this.src='https://via.placeholder.com/1200x450?text=Coupang+Rocket+Event'">
+            </div>
+        </section>
+
+        <!-- 정렬 바 추가 -->
+        <section class="sort-bar container">
+            <div class="sort-options">
+                <button class="sort-btn active" data-sort="default">쿠팡 랭킹순</button>
+                <button class="sort-btn" data-sort="price-low">낮은가격순</button>
+                <button class="sort-btn" data-sort="price-high">높은가격순</button>
+                <button class="sort-btn" data-sort="review">판매량순</button>
             </div>
         </section>
 
@@ -79,6 +95,37 @@
             </div>
         </section>
     </main>
+
+    <!-- 장바구니 사이드바 -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>장바구니 내역</h3>
+            <button id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items-list">
+            <p class="empty-msg">장바구니가 비어있습니다.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-price">총 결제 금액: <span id="total-price">0원</span></div>
+            <button class="checkout-btn">구매하기</button>
+        </div>
+    </div>
+
+    <!-- 상품 상세 모달 -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body" id="modal-body">
+                <!-- 동적으로 채워짐 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 토스트 알림 -->
+    <div id="toast-container"></div>
+
+    <!-- 위로 가기 버튼 -->
+    <button id="top-btn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
 
     <!-- 푸터 -->
     <footer>
@@ -93,4 +140,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
